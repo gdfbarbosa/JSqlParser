@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.jsqlparser.statement.SetStatement;
+import net.sf.jsqlparser.statement.ShowStatement;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.StatementVisitor;
 import net.sf.jsqlparser.statement.Statements;
@@ -637,6 +638,11 @@ public class TablesNamesFinder implements SelectVisitor, FromItemVisitor, Expres
 
     @Override
     public void visit(DateTimeLiteralExpression literal) {
+
+    }
+
+    @Override
+    public void visit(ShowStatement set) {
 
     }
 }

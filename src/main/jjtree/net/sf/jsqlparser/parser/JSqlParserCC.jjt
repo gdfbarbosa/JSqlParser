@@ -266,6 +266,7 @@ TOKEN: /* SQL Keywords. prefixed with K_ to avoid name clashes */
 |   <K_DISABLE : "DISABLE">
 |   <K_USE : "USE">
 |   <K_FORCE : "FORCE">
+|   <K_SHOW:"SHOW">
 }
 
 TOKEN : /* Stuff */
@@ -374,6 +375,8 @@ Statement SingleStatement() :
         stm = Execute()
         |
         stm = Set()
+        |
+        stm = Show()
         )
     } catch (ParseException e) {
         if (errorRecovery) {
@@ -3314,5 +3317,17 @@ Wait Wait():
     
     {
         return wait;
+    }
+}
+
+ShowStatement Show():
+{
+    String runvar;
+  
+}
+{
+    <K_SHOW> runvar = RelObjectNameExt() 
+    {
+        return new ShowStatement(runvar);
     }
 }
