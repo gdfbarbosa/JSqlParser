@@ -39,29 +39,44 @@
  */
 package net.sf.jsqlparser.statement;
 
+import java.util.List;
+
 /**
  *
  * @author toben
  */
 public class ShowStatement implements Statement {
 
-    private String runvar;
-
-    public ShowStatement(String runvar) {
-        this.runvar = runvar;
+    private List<String> runvars;
+    private boolean isAll = false;
+    
+    public List<String> getShowStatement() {
+        return runvars;
     }
 
-    public String getRunvar() {
-        return runvar;
+    public void setShowStatement(List<String> runvars) {
+        this.runvars = runvars;
     }
 
-    public void setRunvar(String runvar) {
-        this.runvar = runvar;
+    public boolean isAll() {
+        return isAll;
     }
 
+    public void setAll(boolean isAll) {
+        this.isAll = isAll;
+    }
+    
     @Override
     public String toString() {
-        return "SHOW " + runvar;
+    String tmp = "";
+        if(!isAll){
+            for(int i = 0; i < this.runvars.size(); i++){
+                tmp = tmp + " " + runvars.get(i);
+            }
+        }else{
+            tmp = " ALL";
+        }
+        return "SHOW" + tmp;
     }
 
     @Override

@@ -191,7 +191,7 @@ public class StatementDeParser implements StatementVisitor {
     }
 
     @Override
-    public void visit(ShowStatement set) {
-        // TODO Auto-generated method stub
+    public void visit(ShowStatement show) {
+        buffer.append(show.toString());
     }
 }

@@ -3322,12 +3322,20 @@ Wait Wait():
 
 ShowStatement Show():
 {
+    ShowStatement showstmts = new ShowStatement();
+    List<String> runvars = new ArrayList<String>();
     String runvar;
-  
+    Token token = null;
 }
 {
-    <K_SHOW> runvar = RelObjectNameExt() 
+    <K_SHOW>
+    (
+        token = <S_IDENTIFIER> { runvars.add(token.image); } (runvar= RelObjectNameExt() { runvars.add(runvar); })*
+        |
+        <K_ALL> {showstmts.setAll(true); }
+    ) 
     {
-        return new ShowStatement(runvar);
+        showstmts.setShowStatement(runvars);
+        return showstmts;
     }
 }

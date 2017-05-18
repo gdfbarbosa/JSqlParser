@@ -68,7 +68,7 @@ public interface StatementVisitor {
 
     void visit(SetStatement set);
     
-    void visit(ShowStatement set);
+    void visit(ShowStatement show);
 
     void visit(Merge merge);
 }
