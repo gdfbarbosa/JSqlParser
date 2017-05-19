@@ -377,6 +377,8 @@ Statement SingleStatement() :
         stm = Set()
         |
         stm = Show()
+        |
+        stm = Begin()
         )
     } catch (ParseException e) {
         if (errorRecovery) {
@@ -3337,5 +3339,16 @@ ShowStatement Show():
     {
         showstmts.setShowStatement(runvars);
         return showstmts;
+    }
+}
+
+BeginStatement Begin():
+{
+    BeginStatement beginstmt = new BeginStatement();
+}
+{
+    <K_BEGIN>
+    {
+        return beginstmt;
     }
 }

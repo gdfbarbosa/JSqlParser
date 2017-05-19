@@ -116,6 +116,11 @@ public class StatementVisitorAdapter implements StatementVisitor {
     }
     
     @Override
+    public void visit(BeginStatement begin) {
+    
+    }
+    
+    @Override
     public void visit(Merge merge) {
 
     }
