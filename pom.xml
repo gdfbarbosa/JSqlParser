@@ -47,15 +47,12 @@
     </developers>
 
     <distributionManagement>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </repository>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
+		<repository>
+			<id>artifactory</id>
+			<name>artifactory</name>
+			<url>http://antares:8080/artifactory/libs-release-local</url>
+		</repository>
+	</distributionManagement>
 
     <scm>
         <connection>scm:git:https://github.com/JSQLParser/JSqlParser.git</connection>
