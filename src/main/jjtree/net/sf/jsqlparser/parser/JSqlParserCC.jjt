@@ -129,6 +129,7 @@ TOKEN: /* SQL Keywords. prefixed with K_ to avoid name clashes */
 |   <K_SET:"SET">
 |   <K_ASC:"ASC">
 |   <K_TOP:"TOP">
+|   <K_TO:"TO">
 |   <K_PERCENT:"PERCENT">
 |   <K_END:"END">
 |   <K_DESC:"DESC">
@@ -431,7 +432,14 @@ SetStatement Set(): {
     boolean useEqual = false;
 }
 {
-    <K_SET> name = RelObjectNameExt() ["=" { useEqual=true; } ] value=SimpleExpression()
+	(
+	    <K_SET> name = RelObjectNameExt() 
+	    	(
+	    		[<K_TO> { useEqual=false; } ]
+	    		["=" { useEqual=true; } ] 
+	    	)
+	    	value=SimpleExpression()
+    )
     {
         return new SetStatement(name,value).setUseEqual(useEqual);
     }
